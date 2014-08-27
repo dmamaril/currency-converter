@@ -16,12 +16,12 @@ var port            = process.env.PORT || 8080;
 /* ==== TEMPLATE ==== */
 app.set('views', path.join(__dirname + '/public', 'templates'));
 app.set('view engine', 'html');
-app.enable('view cache');
 app.set('layout', 'layout');
+app.enable('view cache');
 app.engine('html', require('hogan-express'));
 
 /* ==== STATIC SERVING ==== */
-app.use(express.static(__dirname + '/public'));     // set the static files location /public/img will be /img for users
+app.use(express.static(__dirname + '/public'));     
 
 /* ==== CONFIG ==== */
 app.use(morgan('dev'));                     // log every request to the console
