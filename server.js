@@ -13,6 +13,13 @@ var path            = require('path');
 var sessionKey      = require('./app/config/secret.js');
 var port            = process.env.PORT || 8080;
 
+/* ==== TEMPLATE ==== */
+app.set('views', path.join(__dirname + '/public', 'templates'));
+app.set('view engine', 'html');
+app.enable('view cache');
+app.set('layout', 'layout');
+app.engine('html', require('hogan-express'));
+
 /* ==== STATIC SERVING ==== */
 app.use(express.static(__dirname + '/public'));     // set the static files location /public/img will be /img for users
 
@@ -24,16 +31,9 @@ app.use(methodOverride());                  // simulate DELETE and PUT
 app.use(flash());                           // use connect-flash for flash messages stored in session
 app.use(session({ secret: sessionKey }));   // session secret
 
-/* ==== TEMPLATE ==== */
-app.set('views', path.join(__dirname + '/public', 'templates'));
-app.set('view engine', 'html');
-app.set('layout', 'layout');
-app.engine('html', require('hogan-express'));
-
-
 require('./app/routes/routes.js')(app);     // routes
 
 /* ==== START ==== */
 app.listen(port);
 console.log('Currency Converter started on ' + port);
-exports = module.exports = app;
+module.exports = app;
