@@ -1,0 +1,10 @@
+<div class="history container">
+  <h1 class="heading">Transaction History</h1>
+  {{#transactions}}
+  <div class="row">
+    <div class="date element">{{ date }}</div>
+    <div class="details element">{{ type }}: {{ location }}</div>
+    <div class="amount element">{{ symbol }}{{ amount }}</div>
+  </div>
+  {{/transactions}}
+</div>
