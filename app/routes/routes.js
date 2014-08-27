@@ -1,4 +1,4 @@
-// var cc = require('currency-converter');
+var cc = require('npm-currency-converter')
 var transactions = require('../data/transactions.js');
 
 module.exports = function (app) {
@@ -7,7 +7,7 @@ module.exports = function (app) {
     res.redirect('/paypal/activity');
   })
 
-  // display transaction history
+  /* === DISPLAY TRANSACTION HISTORY === */
   app.get('/paypal/activity', function (req, res) {
     res.render('transactions', transactions)
   });
@@ -23,14 +23,16 @@ module.exports = function (app) {
     input.convertFrom = req.body.convertFrom;
     input.convertTo   = req.body.convertTo;
 
+
     cc.convert(input)
       .then(function (convertedCurrency) {
+        console.log(convertedCurrency);
         res.send(200, convertedCurrency);
       })
       .catch(function (err) {
         // The server encountered an unexpected condition which prevented it from fulfilling the request.
         res.send(500, "Error converting currency");
-      })
+      });
   });
 
   /* input: CurrencyCode to convert from, Currency code to convert to 
@@ -47,10 +49,10 @@ module.exports = function (app) {
       })
       .catch(function (err) {
         res.send(500, "Error calculating conversion rate.");
-      })
+      });
   });
 
-  // handle wildcards
+  /* ==== REDIRECT WILDCARDS ==== */
   app.get('*', function (req, res) {
     res.redirect('/paypal/activity');
   });
