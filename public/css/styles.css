@@ -1,0 +1,30 @@
+body {
+  font: 15px "Arial"; }
+
+.header {
+  text-align: center;
+  color: #007DFA;
+  font-size: 30px; }
+
+.row {
+  padding-top: 10px;
+  padding-bottom: 10px;}
+  .row:nth-child(even) {
+    background-color: #EBEBEB; }
+  .row:nth-child(odd){
+    background-color: #D6D6D6; }
+  .row p {
+    float: left;
+    font-size: 1.33em; }
+    .row .date {
+      margin-left: 10px;
+      margin-right: 35px; }
+    .row .details {
+      width: 250px; }
+
+
+.container {
+  margin: 0 auto;
+  width: 500px;
+  display: flex;
+  flex-direction: column; }
