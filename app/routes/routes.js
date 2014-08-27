@@ -1,4 +1,5 @@
 // var cc = require('currency-converter');
+var transactions = require('../data/transactions.js');
 
 module.exports = function (app) {
 
@@ -8,7 +9,7 @@ module.exports = function (app) {
 
   // display transaction history
   app.get('/paypal/activity', function (req, res) {
-    
+    res.render('transactions', transactions)
   });
 
   /* input: Amount, the currency code for the amount, 
