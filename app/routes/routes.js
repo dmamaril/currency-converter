@@ -1,4 +1,4 @@
-var cc           = require('currency-converter')(process.ENV.OXR_KEY);
+var cc           = require('currency-converter')({ CLIENTKEY: process.ENV.OER_KEY, fetchInterval : 360000 });
 var transactions = require('../data/transactions.js');
 
 module.exports = function (app) {
@@ -12,13 +12,12 @@ module.exports = function (app) {
   });
 
   app.post('/paypal/currencyConversion', function (req, res) {
-    var input = {};
-    input.amount      = req.body.amount;
-    input.convertFrom = req.body.convertFrom;
-    input.convertTo   = req.body.convertTo;
-    input.local       = req.body.local;
+    var amount      = req.body.amount;
+    var convertFrom = req.body.convertFrom;
+    var convertTo   = req.body.convertTo;
+    var local       = req.body.local;
 
-    cc.convert(input)
+    cc.convert(amount, convertFrom, convertTo, local)
       .then(function (convertedCurrency) {
         res.send(200, convertedCurrency);
       })
@@ -28,15 +27,14 @@ module.exports = function (app) {
   });
 
   app.post('/paypal/conversionRate', function (req, res) {
-    var convertKey  = req.body.convertFrom + '_' + req.body.convertTo;
     var result      = {};
-    var input       = {};
+    var convertKey  = req.body.convertFrom + '_' + req.body.convertTo;
 
-    input.convertFrom = req.body.convertFrom;
-    input.convertTo   = req.body.convertTo;
-    input.local       = req.body.local;
+    var convertFrom = req.body.convertFrom;
+    var convertTo   = req.body.convertTo;
+    var local       = req.body.local;
 
-    cc.rates(input)
+    cc.rates(convertFrom, convertTo, local)
       .then(function (conversionRate) {
         result[convertKey] = conversionRate;
         res.send(200, result);
