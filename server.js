@@ -35,4 +35,3 @@ require('./app/routes/routes.js')(app);     // routes
 /* ==== START ==== */
 app.listen(port);
 console.log('Currency Converter started on ' + port);
-module.exports = app;
