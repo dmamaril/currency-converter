@@ -25,7 +25,7 @@ Expect req.body to be:
   local: true // local is OPTIONAL. By default, it will fetch live rates.
 }
 ```
-<img src='http://imgur.com/a5nXIoC'/>
+<img src='http://i.imgur.com/a5nXIoC.png'>
 
 <h2>app.post('/paypal/conversionRate', callback)</h2>
 Returns an object with the conversion rate between two currencies.
@@ -38,5 +38,5 @@ Expect req.body to be:
 }
 ```
 
-<img src='http://imgur.com/a8R8i0N'/>
+<img src='http://i.imgur.com/a8R8i0N.png'/>
 
