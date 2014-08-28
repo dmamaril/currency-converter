@@ -1,4 +1,4 @@
-var cc = require('npm-currency-converter')
+var cc = require('../../../npm-currency-converter');
 var transactions = require('../data/transactions.js');
 
 module.exports = function (app) {
@@ -22,7 +22,7 @@ module.exports = function (app) {
     input.amount      = req.body.amount;
     input.convertFrom = req.body.convertFrom;
     input.convertTo   = req.body.convertTo;
-
+    input.options     = req.body.option;
 
     cc.convert(input)
       .then(function (convertedCurrency) {
