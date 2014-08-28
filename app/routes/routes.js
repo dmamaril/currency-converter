@@ -18,17 +18,13 @@ module.exports = function (app) {
     input.convertTo   = req.body.convertTo;
     input.local       = req.body.local;
 
-    if (cc.verifyInput(input)) {
-      cc.convert(input)
-        .then(function (convertedCurrency) {
-          res.send(200, convertedCurrency);
-        })
-        .catch(function (err) {
-          res.send(500, "Error converting currency");
-        });
-    } else {
-      res.send(400, "Invalid input");
-    }
+    cc.convert(input)
+      .then(function (convertedCurrency) {
+        res.send(200, convertedCurrency);
+      })
+      .catch(function (err) {
+        res.send(500, "Error converting currency");
+      });
   });
 
   app.post('/paypal/conversionRate', function (req, res) {
@@ -40,18 +36,14 @@ module.exports = function (app) {
     input.convertTo   = req.body.convertTo;
     input.local       = req.body.local;
 
-    if (cc.verifyInput(input)) {
-      cc.rates(input)
-        .then(function (conversionRate) {
-          result[convertKey] = conversionRate;
-          res.send(200, result);
-        })
-        .catch(function (err) {
-          res.send(500, "Error calculating conversion rate.");
-        });
-      } else {
-        res.send(400, "Invalid input");
-      }
+    cc.rates(input)
+      .then(function (conversionRate) {
+        result[convertKey] = conversionRate;
+        res.send(200, result);
+      })
+      .catch(function (err) {
+        res.send(500, "Error calculating conversion rate.");
+      });
   });
 
   app.get('*', function (req, res) {
