@@ -1,4 +1,4 @@
-var cc = require('../../../npm-currency-converter');
+var cc           = require('currency-converter')(process.ENV.OXR_KEY);
 var transactions = require('../data/transactions.js');
 
 module.exports = function (app) {
