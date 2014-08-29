@@ -22,7 +22,7 @@ Expect req.body to be:
   amount: 1.00
   convertFrom: 'USD',
   convertTo: 'EUR',
-  local: true // local is OPTIONAL. By default, it will fetch live rates.
+  live: true // OPTIONAL. Retrieves locally stored rates by default.
 }
 ```
 <img src='http://i.imgur.com/a5nXIoC.png'>
