@@ -12,6 +12,7 @@ module.exports = function (app) {
   });
 
   app.post('/paypal/currencyConversion', function (req, res) {
+    console.log("YO!", req.body);
     var amount      = req.body.amount;
     var convertFrom = req.body.convertFrom;
     var convertTo   = req.body.convertTo;
