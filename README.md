@@ -13,7 +13,7 @@ Inside  app/routes/routes.js:1 is where you'll insert your own key after registr
 <h1> Usage </h1>
 
 
-<h2>app.post('/paypal/currencyConversion', callback)</h2> 
+<h2>app.get('/paypal/currencyConversion', callback)</h2> 
 Returns an object with the amount converted in the specificed currency.
 
 Expect req.body to be:
@@ -27,7 +27,7 @@ Expect req.body to be:
 ```
 <img src='http://i.imgur.com/a5nXIoC.png'>
 
-<h2>app.post('/paypal/conversionRate', callback)</h2>
+<h2>app.get('/paypal/conversionRate', callback)</h2>
 Returns an object with the conversion rate between two currencies.
 
 Expect req.body to be: 
