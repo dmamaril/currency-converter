@@ -12,12 +12,11 @@ module.exports = function (app) {
   });
 
   app.get('/paypal/currencyConversion', function (req, res) {
-    console.log("YO!", req.params, req.query);
     var amount      = req.query.amount;
     var convertFrom = req.query.convertFrom;
     var convertTo   = req.query.convertTo;
     var local       = req.query.local;
-
+    console.log(amount, convertFrom, convertTo, local);
     cc.convert(amount, convertFrom, convertTo, local)
       .then(function (convertedCurrency) {
         res.send(200, convertedCurrency);
