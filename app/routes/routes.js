@@ -1,4 +1,4 @@
-var cc           = require('currency-converter')({ CLIENTKEY: process.env.OERKEY fetchInterval : 360000 });
+var cc           = require('currency-converter')({ CLIENTKEY: process.env.OERKEY, fetchInterval : 360000 });
 var transactions = require('../data/transactions.js');
 
 module.exports = function (app) {
