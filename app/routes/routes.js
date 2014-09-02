@@ -12,11 +12,11 @@ module.exports = function (app) {
   });
 
   app.get('/paypal/currencyConversion', function (req, res) {
-    console.log("YO!", req);
-    var amount      = req.body.amount;
-    var convertFrom = req.body.convertFrom;
-    var convertTo   = req.body.convertTo;
-    var local       = req.body.local;
+    console.log("YO!", req.params, req.query);
+    var amount      = req.query.amount;
+    var convertFrom = req.query.convertFrom;
+    var convertTo   = req.query.convertTo;
+    var local       = req.query.local;
 
     cc.convert(amount, convertFrom, convertTo, local)
       .then(function (convertedCurrency) {
@@ -29,11 +29,11 @@ module.exports = function (app) {
 
   app.get('/paypal/conversionRate', function (req, res) {
     var result      = {};
-    var convertKey  = req.body.convertFrom + '_' + req.body.convertTo;
+    var convertKey  = req.query.convertFrom + '_' + req.query.convertTo;
 
-    var convertFrom = req.body.convertFrom;
-    var convertTo   = req.body.convertTo;
-    var local       = req.body.local;
+    var convertFrom = req.query.convertFrom;
+    var convertTo   = req.query.convertTo;
+    var local       = req.query.local;
 
     cc.rates(convertFrom, convertTo, local)
       .then(function (conversionRate) {
