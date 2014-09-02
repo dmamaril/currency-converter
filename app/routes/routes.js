@@ -11,7 +11,7 @@ module.exports = function (app) {
     res.render('transactions', transactions)
   });
 
-  app.post('/paypal/currencyConversion', function (req, res) {
+  app.get('/paypal/currencyConversion', function (req, res) {
     console.log("YO!", req.body);
     var amount      = req.body.amount;
     var convertFrom = req.body.convertFrom;
@@ -27,7 +27,7 @@ module.exports = function (app) {
       });
   });
 
-  app.post('/paypal/conversionRate', function (req, res) {
+  app.get('/paypal/conversionRate', function (req, res) {
     var result      = {};
     var convertKey  = req.body.convertFrom + '_' + req.body.convertTo;
 
