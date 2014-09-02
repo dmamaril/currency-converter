@@ -17,16 +17,11 @@ module.exports = function (app) {
     var convertTo   = req.query.convertTo;
     var local       = req.query.local;
     
-    console.log(amount, convertFrom, convertTo, local);
-
-    console.log(cc.convert(amount, convertFrom, convertTo, local));
-
     cc.convert(amount, convertFrom, convertTo, local)
       .then(function (convertedCurrency) {
         res.send(200, convertedCurrency);
       })
       .catch(function (err) {
-        console.log(err);
         res.send(500, "Error converting currency");
       });
   });
